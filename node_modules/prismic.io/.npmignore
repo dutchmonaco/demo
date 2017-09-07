@@ -1,0 +1,8 @@
+coverage/
+node_modules
+build
+local-build
+.idea
+.grunt
+.tern-port
+npm-debug.log

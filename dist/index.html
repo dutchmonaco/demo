@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DM TOOLS</title>
+<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+<link rel='stylesheet' href='css/style.css' type='text/css' media='all' />
+<script src="https://unpkg.com/vue"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js'></script>
+
+</head>
+
+<body>
+<div id="layout">
+<div id="blog">
+  <h1>VUE</h1>
+  <br>
+  <div class="item" v-for="post in posts">
+    <img v-bind:src="post.image"/>
+    <h2 class="title">{{ post.title }}</h2>
+    <p class="desc">{{ post.desc }}</p>
+  </div>
+  </div>
+  <hr>
+  <h1>FIREBASE</h1>
+  <p>Firebase Sign Up Form</p>
+  <div id="frm_SignUp">
+    <input type="text" id="email" name="email" value="" placeholder="email" v-model="email" />
+     <input type="password" id="pass" name="pass" value="" placeholder="password" v-model="pass" />
+     <a href="#" v-on:click="add">Sign In</a>
+  </div>
+  
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyArDeRnaKQi2RrMzQe6O-f7U0qsRLq5IsY",
+    authDomain: "dutchmonaco-5a88e.firebaseapp.com",
+    databaseURL: "https://dutchmonaco-5a88e.firebaseio.com",
+    projectId: "dutchmonaco-5a88e",
+    storageBucket: "",
+    messagingSenderId: "783499816394"
+  };
+  firebase.initializeApp(config);
+  /*
+  //var provider = new firebase.auth.FacebookAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(function(result) {
+  var token = result.credential.accessToken;
+  var user = result.user;
+  console.log(user);
+  // ...
+  
+}).catch(function(error) {
+  console.log(error);
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  var email = error.email;
+  var credential = error.credential;
+  // ...
+});
+  */
+  
+</script>
+<script>
+var app = new Vue({
+  el: '#blog',
+  data: {
+    posts: [ { item : '', desc: '', image: '' }]
+  },
+  created: function(){
+    this.getData();
+  },
+  methods: {
+    getData: function() {
+      this.$http.get('../_json/products.json', function(data, status, request) {
+        if(status == 200){ this.posts = data; }
+      });
+    }
+  }
+})
+
+/* SIGN IN */
+var userSignUp = new Vue({ 
+  el: '#frm_SignUp',
+  data: { email : null, pass : null  },
+   methods: {
+    add: function (event) {
+	 
+	  firebase.auth().createUserWithEmailAndPassword(this.email,this.pass).then(function(user){ 
+	    var uid = user.uid;
+		firebase.database().ref('User/' + uid).set({userId:{ name: "This is a demo user"}});
+	  }).catch(function(error) {
+	    var errorCode = error.code;
+	    var errorMessage = error.message;
+		alert(errorMessage);
+	  })
+    }
+  }
+});
+/*
+;*/
+</script>
+
+</body>
+</html>

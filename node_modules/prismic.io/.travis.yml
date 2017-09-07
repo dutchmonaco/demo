@@ -1,0 +1,14 @@
+language: node_js
+sudo: false
+node_js:
+- '4'
+- '5'
+- '6'
+- '7'
++script:
+  npm run lint
+after_script:
+- codeclimate < coverage/lcov.info
+addons:
+  code_climate:
+    repo_token: 25760a4ae3dea7404d3a3ef79951e0b6bf8808fcdb7f63bc1533610a9d8f936d

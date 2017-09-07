@@ -1,0 +1,18 @@
+{
+  "name": "tools",
+  "version": "0.0.1",
+  "description": "Dutch Monaco Demo Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dutch Monaco LLC",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "prismic.io": "^3.5.7"
+  }
+}

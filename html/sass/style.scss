@@ -1,0 +1,29 @@
+$font: 'Russo One', sans-serif;
+
+body{ 
+  margin:0; padding:0; background-color:#fbfbfb; 
+  font-family: $font;
+  font-weight:100;
+  font-size: 16px; letter-spacing:.08em;
+}
+
+
+h2{ margin:0;}
+
+/* BLOG MODULE */
+#blog {
+  
+  max-width:1024px; margin:auto;
+  margin:50px; margin-left:auto; margin-right:auto;
+  .item { border:#e4e4e4 solid 1px; padding:25px; margin-bottom:25px; background-color:#fff; }
+  .title {
+  }
+  .desc { font-size:14px;} 
+
+}
+
+/* LAYOUT */
+#layout { 
+  max-width:1024px; margin:auto;
+  img { width:100%; height:auto; }
+}
