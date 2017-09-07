@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
 <link rel='stylesheet' href='css/style.css' type='text/css' media='all' />
 <script src="https://unpkg.com/vue"></script>
+<script src="js/vue-youtube-embed.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js'></script>
 
 </head>
@@ -27,8 +28,12 @@
   <div id="frm_SignUp">
     <input type="text" id="email" name="email" value="" placeholder="email" v-model="email" />
      <input type="password" id="pass" name="pass" value="" placeholder="password" v-model="pass" />
-     <a href="#" v-on:click="add">Sign In</a>
+     <a href="#" v-on:click="add">Registro</a>
   </div>
+  <hr>
+  <h1>VUE Youtube</h1>
+  <youtube :video-id="crIDtQ3pKhk"></youtube>
+
   
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -37,6 +42,9 @@
 
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 <script>
+   
+  
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyArDeRnaKQi2RrMzQe6O-f7U0qsRLq5IsY",
@@ -77,8 +85,9 @@ var app = new Vue({
   },
   methods: {
     getData: function() {
-      this.$http.get('../_json/products.json', function(data, status, request) {
+      this.$http.get('_json/products.json', function(data, status, request) {
         if(status == 200){ this.posts = data; }
+		Vue.use(VueYouTubeEmbed); 
       });
     }
   }
