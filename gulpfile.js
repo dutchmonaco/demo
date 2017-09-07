@@ -41,7 +41,8 @@ gulp.task('build', function () {
         .pipe(gulp.dest('dist/css/'));
 		
 		
-		gulp.src('html/**/*.html').pipe(gulp.dest('dist/'));
+	gulp.src('html/**/*.html').pipe(gulp.dest('dist/'));
+	gulp.src('_json/**/*').pipe(gulp.dest('dist/_json/'));
   
   
 });
